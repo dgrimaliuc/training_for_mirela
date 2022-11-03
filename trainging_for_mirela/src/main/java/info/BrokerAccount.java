@@ -1,4 +1,4 @@
-package src.info;
+package info;
 
 public class BrokerAccount extends AbstractAccount {
 
