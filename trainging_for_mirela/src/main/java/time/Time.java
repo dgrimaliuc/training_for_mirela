@@ -1,10 +1,7 @@
 package time;
 
-import java.lang.*;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.time.LocalTime;
 
 public class Time implements Comparable {
     int minute, second, hour;
@@ -63,37 +60,48 @@ public class Time implements Comparable {
         return time;
     }
 
+    //Homework
 
-    public static void main(String args[]) {
+    public static void notifyAfter(Time time) {
 
-        List<Time> objects = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            objects.add(random());
-            System.out.println(objects.get(i));
+        System.out.println("Sleep time = " + time);
+        sleep(convertToMilliseconds(time.hour, time.minute, time.second));
+
+    }
+
+    public static void notifyIn(Time time) {
+        LocalTime now = LocalTime.now();
+        int hour = time.hour - now.getHour();
+        int minute = time.minute - now.getMinute();
+        int second = time.second - now.getSecond();
+        if (hour < 0) {
+            throw new RuntimeException("Hour is negative");
+        } else if (minute < 0 && hour < 0) {
+            throw new RuntimeException("Minutes are negative");
+        } else if (second < 0) {
+            throw new RuntimeException("Seconds are negative");
         }
-        System.out.println("\n\n\nSorted time: \n\n\n");
 
-        objects = sort(objects);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(objects.get(i));
+        System.out.println("notifyIn time = " + time);
+        sleep(convertToMilliseconds(hour, minute, second));
+     //Create diffrent functions for hour, minute, second
+
+    }
+
+    public static void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException ignored) {
         }
 
     }
 
-    public static List<Time> sort(List<Time> list){
-        for(int i = 0; i<list.size()-1; i++)
-        {
-            for (int j = i+1; j<list.size(); j++)
-            {
-                if(list.get(i).compareTo(list.get(j))>0)
-                {
-                    Time temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
-                }
-            }
-        }
-        return list;
+    private static int convertToMilliseconds(int hour, int minute, int second) {
+        hour = hour * 3600000;
+        minute = minute * 60000;
+        second = second * 1000;
+
+        return hour + minute + second;
     }
 
 
@@ -106,4 +114,6 @@ public class Time implements Comparable {
             return -1;
         else return 1;
     }
+
+
 }
