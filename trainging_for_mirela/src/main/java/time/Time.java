@@ -44,7 +44,7 @@ public class Time implements Comparable {
         SecureRandom random = new SecureRandom();
         random.nextInt(10);
         time.setHour(random.nextInt(24));
-        time.setMinute(random.nextInt(60));
+        time.setMinute(random.nextInt(120));
         time.setSecond(random.nextInt(60));
         return time;
     }
