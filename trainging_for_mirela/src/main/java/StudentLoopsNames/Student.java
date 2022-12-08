@@ -1,9 +1,10 @@
 package StudentLoopsNames;
 
+import StudentLoopsNames.interfaces.Communicable;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 
-public class Student {
+public class Student implements Communicable {
 
     private final String firstName;
     private final String lastName;
@@ -21,7 +22,6 @@ public class Student {
     }
 
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -32,5 +32,22 @@ public class Student {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+
+    public void saySomething() {
+        System.out.println("Hi user!");
+    }
+
+    public void saySomething(String s) {
+        System.out.println("Hi user!");
+    }
+
+    public void saySomething(String ...words) {// arguments
+        System.out.println("Hi user!" + words);
+    }
+
+    @Override
+    public String communicate(String words) {
+        return getFullName() + " said " + words;
     }
 }
