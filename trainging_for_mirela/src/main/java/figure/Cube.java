@@ -3,9 +3,15 @@ package figure;
 public class Cube extends Figure{
     public Cube(int height, int width, int length)
     {
-        setWidth(width);
-        setLength(length);
-        setHeight(height);
-        setRadius(0);
+    }
+
+    @Override
+    public int getPerimeter() {
+        return 0;
+    }
+
+    @Override
+    public double getArea() {
+        return 0;
     }
 }

@@ -98,29 +98,14 @@ public class Time implements Comparable {
     }
 
     public static void notifyIn(Time time) {
+
         LocalTime now = LocalTime.now();
-        int hour = time.hour - now.getHour();
-        int minute = time.minute - now.getMinute();
-        int second = time.second - now.getSecond();
-        if (hour < 0) {
-            throw new RuntimeException("Hour is negative");
-        } else if (minute < 0 && hour < 0) {
-            throw new RuntimeException("Minutes are negative");
-        } else if (second < 0) {
-            throw new RuntimeException("Seconds are negative");
-        }
+        Time currentTime  = new Time(now.getHour(), now.getMinute(),  now.getSecond());
+        if (currentTime.compareTo(time) < 0) {
 
-        System.out.println("notifyIn time = " + time);
-        sleep(convertToMilliseconds(hour, minute, second));
-     //Create diffrent functions for hour, minute, second
-
-    }
-
-    public static void sleep(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException ignored) {
-        }
+            System.out.println("notifyIn time = " + time);
+            sleep(convertToMilliseconds(0, 0, 0));
+        }throw new IllegalArgumentException("Time is not valid: " + time);
 
     }
 
@@ -132,20 +117,49 @@ public class Time implements Comparable {
         return hour + minute + second;
     }
 
-
-
-    @Override
-    public int compareTo(Object time2) {
-        Time time = (Time) time2;
-        int cmp = (this.hour - time.hour);
-        if (cmp == 0) {
-            cmp = (this.minute - time.minute);
-            if (cmp == 0) {
-                cmp = (this.second - time.second);
-            }
+    public static void sleep (int milliseconds){
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException ignored) {
         }
-        return cmp;
+
+    }
+
+    public static boolean secondCheck(int second) {
+        if (second < 0 || second > 59) {
+            throw new RuntimeException("Seconds are negative");
+        }
+        return false;
     }
 
 
-}
+    public static void hourCheck(int hour) {
+        if (hour < 0 || hour > 24) {
+            throw new RuntimeException("Hour is negative");
+        }
+    }
+
+    public static boolean minuteCheck(int minute) {
+        if (minute < 0 || minute > 59) {
+            throw new RuntimeException("Minutes are negative");
+        }
+        return false;
+    }
+
+
+
+        @Override
+        public int compareTo (Object time2){
+            Time time = (Time) time2;
+            int cmp = (this.hour - time.hour);
+            if (cmp == 0) {
+                cmp = (this.minute - time.minute);
+                if (cmp == 0) {
+                    cmp = (this.second - time.second);
+                }
+            }
+            return cmp;
+        }
+
+
+    }

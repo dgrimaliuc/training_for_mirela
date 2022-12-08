@@ -1,57 +1,38 @@
 package figure;
 
-import java.util.Scanner;
+public class Triangle extends Figure{
 
-public class Triangle<a, b, c> extends Figure{
+    double a, b, c;
 
-    public Triangle(int height) {
-        setWidth(0);
-        setLength(0);
-        setRadius(0);
-        setHeight(height);
+    public Triangle(double a, double b, double c) {
+        checkValidity(a,b,c);
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    static Scanner console = new Scanner(System.in);
-
-
-      double a, b, c;
-//
-//        System.out.print("The value for a = ");
-//        System.out.print("The value for b = ");
-//        System.out.print("The value for c = ");
-//        System.out.print("The value for height = ");
-//
-//
-//     if ((checkValidity(a, b, c)) == 1)
-//         System.out.print("Valid Triangle");
-//     else
-//         System.out.print("Invalid Triangle");
-//
-//
-//        System.out.println("The perimeter of the triangle is: " + perimeter(a,b,c));
-//        System.out.println("The area of the triangle is: " + perimeter(a,b,c));
-//    }
-
-
-    public int checkValidity(double a, double b, double c)
-    {
+    public void checkValidity(double a, double b, double c) {
         if (a + b <= c || a + c <= b || b + c <= a)
-            return 0;
+            System.out.print("Invalid Triangle");
         else
-            return 1;
+            System.out.print("Valid Triangle");
     }
-    public int perimeter(double a, double b, double c)
-    {
-        int perimeter=0;
-        perimeter = (int) (a+b+c);
+
+    @Override
+    public int getPerimeter() {
+        int perimeter = (int) (a+b+c);
+        System.out.println("\nThe perimeter of the triangle is: " + perimeter);
         return perimeter;
     }
 
-    public int area(double a, double b, double c)
-    {
-        int area=1;
-        //area = (int) (s*(s-a)*(s-b)*(s-c));
+
+    @Override
+    public double getArea() {
+        double s = (a+b+c)/2;
+        double area = (double) (s*(s-a)*(s-b)*(s-c));
+        System.out.println("\nThe area of the triangle is: " + area);
         return area;
     }
 }
+
 
