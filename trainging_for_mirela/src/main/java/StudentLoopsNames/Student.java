@@ -4,6 +4,8 @@ import StudentLoopsNames.interfaces.Communicable;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 
+import java.util.Arrays;
+
 public class Student implements Communicable {
 
     private final String firstName;
@@ -42,8 +44,8 @@ public class Student implements Communicable {
         System.out.println("Hi user!");
     }
 
-    public void saySomething(String ...words) {// arguments
-        System.out.println("Hi user!" + words);
+    public void saySomething(String ...words) {
+        System.out.println("Hi user!" + Arrays.toString(words));
     }
 
     @Override
