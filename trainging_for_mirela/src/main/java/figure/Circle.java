@@ -1,31 +1,35 @@
 package figure;
 
+import java.awt.*;
+import java.text.DecimalFormat;
 
-public class Circle extends Figure{
-    public Circle (int radius)
-    {
+import static java.lang.Math.PI;
+
+public class Circle extends Figure {
+
+    double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
-    double r;
-    private int perimeter (int r){
-        int perimeter=0;
-        //perimeter = (int) (a+b+c);
-        return perimeter;
-    }
-
-    private double area (double r){
-        int area=1;
-        //double is not accepted?
-        area = (int) (3.14 * (r*r));
-        return area;
-    }
     @Override
-    public int getPerimeter() {
-        return 0;
+    public double getPerimeter() {
+        return round(2 * PI * radius);
     }
 
     @Override
     public double getArea() {
-        return 0;
+        return round(PI * radius * radius);
     }
+
+    private double round (double n){
+        return Math.round(n * 100) / 100.0;
+    }
+    @Override
+    public String toString() {
+        return "The perimeter length of the circle is: " + getPerimeter()
+                + "\nThe area length of the circle  is: " +  getArea();
+    }
+
 }

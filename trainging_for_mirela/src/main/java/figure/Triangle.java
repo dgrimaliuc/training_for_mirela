@@ -1,38 +1,39 @@
 package figure;
 
-public class Triangle extends Figure{
+public class Triangle extends Figure {
 
     double a, b, c;
 
     public Triangle(double a, double b, double c) {
-        checkValidity(a,b,c);
+        checkParameters(a, b, c);
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    public void checkValidity(double a, double b, double c) {
-        if (a + b <= c || a + c <= b || b + c <= a)
-            System.out.print("Invalid Triangle");
-        else
-            System.out.print("Valid Triangle");
+    public void checkParameters(double a, double b, double c) {
+       if (!(a + b >= c && a + c >= b && b + c >= a)){
+           throw new RuntimeException("Invalid Triangle");
+       }
     }
+
 
     @Override
-    public int getPerimeter() {
-        int perimeter = (int) (a+b+c);
-        System.out.println("\nThe perimeter of the triangle is: " + perimeter);
-        return perimeter;
+    public double getPerimeter() {
+        return a + b + c;
     }
-
 
     @Override
     public double getArea() {
-        double s = (a+b+c)/2;
-        double area = (double) (s*(s-a)*(s-b)*(s-c));
-        System.out.println("\nThe area of the triangle is: " + area);
-        return area;
+        double s = (a + b + c) / 2;
+        return s * (s - a) * (s - b) * (s - c);
     }
+
+    @Override
+    public String toString() {
+        return "The perimeter length of the triangle is: " + getPerimeter() + "\nThe area length of the triangle is:" + getArea();
+    }
+
 }
 
 

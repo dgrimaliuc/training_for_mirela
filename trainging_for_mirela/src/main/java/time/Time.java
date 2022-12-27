@@ -7,63 +7,29 @@ import java.util.Collections;
 import java.util.List;
 
 public class Time implements Comparable {
+    private int minute, second, hour;
+
     public int getMinute() {
         return minute;
     }
-
     public int getSecond() {
         return second;
     }
-
     public int getHour() {
         return hour;
     }
 
-    private int minute, second, hour;
 
     public Time() {
         this(0, 0, 0);
     }
-
     public Time(int hour) {
         this(hour, 0, 0);
     }
-
     public Time(int hour, int minute) {
         this(hour, minute, 0);
     }
 
-    public Time(int hour, int minute, int second) {
-        setHour(hour);
-        setMinute(minute);
-        setSecond(second);
-    }
-
-    public static Time random() {
-        Time time = new Time();
-        SecureRandom random = new SecureRandom();
-        random.nextInt(10);
-        time.setHour(random.nextInt(24));
-        time.setMinute(random.nextInt(120));
-        time.setSecond(random.nextInt(60));
-        return time;
-    }
-
-    public static void main(String args[]) {
-
-        List<Time> objects = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            objects.add(random());
-            System.out.println(objects.get(i));
-        }
-        System.out.println("\n\n\nSorted time: \n\n\n");
-
-        Collections.sort(objects);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(objects.get(i));
-        }
-
-    }
 
     public void setHour(int hour) {
         if (hour >= 0 && hour < 24) {
@@ -83,6 +49,24 @@ public class Time implements Comparable {
             this.second = second;
         } else throw new IllegalArgumentException("Seconds can't be: " + second);
     }
+
+
+    public Time(int hour, int minute, int second) {
+        setHour(hour);
+        setMinute(minute);
+        setSecond(second);
+    }
+
+    public static Time random() {
+        Time time = new Time();
+        SecureRandom random = new SecureRandom();
+        random.nextInt(10);
+        time.setHour(random.nextInt(24));
+        time.setMinute(random.nextInt(120));
+        time.setSecond(random.nextInt(60));
+        return time;
+    }
+
 
     @Override
     public String toString() {
@@ -125,27 +109,26 @@ public class Time implements Comparable {
 
     }
 
-    public static boolean secondCheck(int second) {
-        if (second < 0 || second > 59) {
-            throw new RuntimeException("Seconds are negative");
-        }
-        return false;
-    }
-
-
-    public static void hourCheck(int hour) {
-        if (hour < 0 || hour > 24) {
-            throw new RuntimeException("Hour is negative");
-        }
-    }
-
-    public static boolean minuteCheck(int minute) {
-        if (minute < 0 || minute > 59) {
-            throw new RuntimeException("Minutes are negative");
-        }
-        return false;
-    }
-
+//    public static boolean secondCheck(int second) {
+//        if (second < 0 || second > 59) {
+//            throw new RuntimeException("Seconds are negative");
+//        }
+//        return false;
+//    }
+//
+//
+//    public static void hourCheck(int hour) {
+//        if (hour < 0 || hour > 24) {
+//            throw new RuntimeException("Hour is negative");
+//        }
+//    }
+//
+//    public static boolean minuteCheck(int minute) {
+//        if (minute < 0 || minute > 59) {
+//            throw new RuntimeException("Minutes are negative");
+//        }
+//        return false;
+//    }
 
 
         @Override

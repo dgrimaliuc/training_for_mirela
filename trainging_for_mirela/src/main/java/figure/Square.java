@@ -1,19 +1,31 @@
 package figure;
 
-public class Square extends Figure{
+import static java.lang.Math.pow;
 
-    public Square(int width, int length)
-    {
+public class Square extends Figure {
 
+    int a;
+
+    public Square(int a) {
+
+        this.a = a;
     }
 
+
     @Override
-    public int getPerimeter() {
-        return 0;
+    public double getPerimeter() {
+
+        return a * 4;
     }
 
     @Override
     public double getArea() {
-        return 0;
+
+        return pow(a,2);
+    }
+
+    @Override
+    public String toString() {
+        return "The perimeter length of the square is: " + getPerimeter() + "\nThe area length of the square is: " + getArea();
     }
 }
