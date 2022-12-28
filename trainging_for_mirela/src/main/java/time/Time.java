@@ -109,26 +109,6 @@ public class Time implements Comparable {
 
     }
 
-//    public static boolean secondCheck(int second) {
-//        if (second < 0 || second > 59) {
-//            throw new RuntimeException("Seconds are negative");
-//        }
-//        return false;
-//    }
-//
-//
-//    public static void hourCheck(int hour) {
-//        if (hour < 0 || hour > 24) {
-//            throw new RuntimeException("Hour is negative");
-//        }
-//    }
-//
-//    public static boolean minuteCheck(int minute) {
-//        if (minute < 0 || minute > 59) {
-//            throw new RuntimeException("Minutes are negative");
-//        }
-//        return false;
-//    }
 
 
         @Override

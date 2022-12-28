@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class Student implements Communicable, Dressable {
 
+    public static String schoolName;
     private final String firstName;
     private final String lastName;
 
